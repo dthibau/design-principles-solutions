@@ -5,20 +5,17 @@ import java.util.List;
 
 public class CommandChain {
 
-	private List<CommandHandler> chain = new LinkedList<CommandHandler>();
-	private int i=0;
+	private List<Receiver> chain = new LinkedList<Receiver>();
+	private int i=-1;
 	
 	public CommandChain() {
 		chain.add(new ConcreteCommandHandler1());
 		chain.add(new ConcreteCommandHandler2());
 		chain.add(new ConcreteCommandHandler1());
 	}
-	public CommandHandler getFirst() {
-		return chain.get(0);
-		
-	}
+
 	
-	public CommandHandler getNext() {
+	public Receiver getNext() {
 		i++;
 		if ( i< chain.size() ) {
 			return chain.get(i);

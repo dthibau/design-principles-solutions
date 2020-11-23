@@ -2,20 +2,20 @@ package org.formation.pattern.chainofresponsability;
 
 public class CommandSender {
 
-	CommandChain chain;
-	
-	public CommandChain getChain() {
-		return chain;
+	CommandHandler handler;
+
+	public CommandHandler getHandler() {
+		return handler;
 	}
 
 
-	public void setChain(CommandChain chain) {
-		this.chain = chain;
+	public void setHandler(CommandHandler handler) {
+		this.handler = handler;
 	}
 
 
 	public void sendCommand(String commande) {
-		chain.getFirst().postCommand(chain,commande);
+		// I'd like to send my commande to all the handlers in the chain without knowing them
+		handler.sendCommand(commande);
 	}
-	
 }

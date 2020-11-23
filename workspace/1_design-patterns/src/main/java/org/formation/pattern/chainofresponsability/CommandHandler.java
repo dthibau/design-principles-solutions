@@ -1,17 +1,24 @@
 package org.formation.pattern.chainofresponsability;
 
-public abstract class CommandHandler {
+public class CommandHandler {
 
+	private final CommandChain commandChain;
 	
-	protected abstract boolean handleCommand(String commande);
-	
-	public void postCommand(CommandChain chain, String commande) {
-		if ( handleCommand(commande) ) {
-			return;
-		} else {
-			chain.getNext().postCommand(chain, commande);
-		}
+	public CommandHandler(CommandChain commandChain) {
+		this.commandChain = commandChain;
 	}
 	
+	
+	public void sendCommand(String commande) {
+		Receiver handler = commandChain.getNext();
+		
+		while ( !handler.handleCommand(commande) ) {
+			handler = commandChain.getNext();
+			if ( handler == null ) {
+				break;
+			}
+		}
+		
+	}
 
 }
