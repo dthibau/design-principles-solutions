@@ -1,0 +1,6 @@
+projectKey=org.formation:design-patterns
+serverUrl=http://localhost:9000
+serverVersion=6.7.3.38370
+dashboardUrl=http://localhost:9000/dashboard/index/org.formation:design-patterns
+ceTaskId=AW0WhZslxrXVggScAJq2
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AW0WhZslxrXVggScAJq2
