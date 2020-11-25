@@ -1,0 +1,58 @@
+version: '2'
+services:
+  config:
+    build: ./config/
+    restart: always
+    networks:
+     - back
+    ports:
+     - "8888:8888"
+  annuaire:
+    build: ./annuaire/
+    networks:
+     - back
+    ports:
+     - "1111:1111"
+    restart: always
+    depends_on:
+      - config
+  product-service:
+    build: ./product-service/
+    networks:
+     - back
+    restart: always
+    depends_on:
+      - config
+  notification-service:
+    build: ./notification-service/
+    networks:
+     - back
+    restart: always
+    depends_on:
+      - config
+  orders-service:
+    build: ./order-service/
+    networks:
+      - back
+    restart: always
+    depends_on:
+      - config
+  proxy:
+    build: ./proxy/
+    networks:
+      - front
+      - back
+    ports:
+      - 8081:8081
+    restart: always
+    depends_on:
+      - config
+  fake-smtp:
+    build: ./fake-smtp/
+    networks:
+      - back
+
+
+networks:
+  back:
+  front:
